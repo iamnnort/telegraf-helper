@@ -1,4 +1,4 @@
-import { BaseRequestConfig, request } from "@iamnnort/request";
+import { BaseRequestConfig, methods, request } from "@iamnnort/request";
 
 function getBotId(botToken = "") {
   if (!botToken) {
@@ -28,9 +28,10 @@ function makeLink(username = "", start = "") {
   return `https://t.me/${username}`;
 }
 
-function makeRequest(botToken = "", requestConfig: BaseRequestConfig = {}) {
+function getRequest(botToken = "", requestConfig: BaseRequestConfig = {}) {
   const req = request({
     ...requestConfig,
+    method: methods.POST,
     baseUrl: "https://api.telegram.org",
     url: `bot${botToken}`,
   });
@@ -42,5 +43,5 @@ export const telegramHelper = {
   getBotId,
   makeInlineLink,
   makeLink,
-  makeRequest,
+  getRequest,
 };
