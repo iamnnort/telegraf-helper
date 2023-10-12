@@ -33,7 +33,7 @@ function getInviteLinkOwner(ctx: any): User {
   return ctx.update.chat_join_request?.invite_link?.creator;
 }
 
-function getInlineQuery(ctx: any) {
+function getInlineQuery(ctx: any): string {
   return ctx.update.inline_query?.query || "";
 }
 
