@@ -6,6 +6,6 @@ function inlineQuery() {
   };
 }
 
-export const filterHelper = {
+export const /Users/nikitapavets/projects/toolsy-admin-bot/src/helpers/update.ts = {
   inlineQuery,
 };
