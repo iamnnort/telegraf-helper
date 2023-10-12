@@ -101,14 +101,14 @@ All the Best
 
 #### Parameters
 
-| Parameter            | Description                                     |
-| -------------------- | ----------------------------------------------- |
-| `title`              | Title of the entity block shown at the top      |
-| `comment`            | Comment of the entity block shown at the bottom |
-| `fallback`           | Fallback if properties are empty or missing     |
-| `properties`         | List of configs for the entity properties       |
-| `properties[i].name` | Name of the property                            |
-| `properties[i].`     | Value of the property                           |
+| Parameter             | Description                                     |
+| --------------------- | ----------------------------------------------- |
+| `title`               | Title of the entity block shown at the top      |
+| `comment`             | Comment of the entity block shown at the bottom |
+| `fallback`            | Fallback if properties are empty or missing     |
+| `properties`          | List of configs for the entity properties       |
+| `properties[i].name`  | Name of the property                            |
+| `properties[i].value` | Value of the property                           |
 
 ## License
 
