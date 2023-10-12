@@ -1,6 +1,6 @@
 {
   "name": "@iamnnort/telegraf-helper",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Helpers for Telegraf.js framework - Simple - Customizable - Convenient",
   "keywords": [
     "telegraf",
@@ -14,7 +14,8 @@
     "dist"
   ],
   "scripts": {
-    "start": "yarn ts-node ./examples/message",
+    "start:message": "yarn ts-node ./examples/message",
+    "start:telegram": "yarn ts-node ./examples/telegram",
     "build": "tsup",
     "test": "jest --passWithNoTests"
   },
@@ -29,11 +30,12 @@
   },
   "homepage": "https://github.com/iamnnort/telegraf-helper#readme",
   "dependencies": {
-    "debug": "^4.3.4",
-    "telegraf": "^4.14.0"
+    "@iamnnort/request": "^1.5.7"
   },
   "devDependencies": {
+    "telegraf": "^4.14.0",
     "@types/jest": "^29.5.5",
+    "dotenv": "^16.3.1",
     "jest": "^29.7.0",
     "path": "^0.12.7",
     "ts-jest": "^29.1.1",

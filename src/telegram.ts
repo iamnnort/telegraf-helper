@@ -1,3 +1,5 @@
+import { BaseRequestConfig, request } from "@iamnnort/request";
+
 function getBotId(botToken = "") {
   if (!botToken) {
     return NaN;
@@ -6,7 +8,7 @@ function getBotId(botToken = "") {
   return parseInt(botToken.split(":")[0]);
 }
 
-function getInlineLink(username = "") {
+function makeInlineLink(username = "") {
   if (!username) {
     return "";
   }
@@ -14,7 +16,7 @@ function getInlineLink(username = "") {
   return `@${username}`;
 }
 
-function getLink(username = "", start = "") {
+function makeLink(username = "", start = "") {
   if (!username) {
     return "";
   }
@@ -26,8 +28,19 @@ function getLink(username = "", start = "") {
   return `https://t.me/${username}`;
 }
 
+function makeRequest(botToken = "", requestConfig: BaseRequestConfig = {}) {
+  const req = request({
+    ...requestConfig,
+    baseUrl: "https://api.telegram.org",
+    url: `bot${botToken}`,
+  });
+
+  return req;
+}
+
 export const telegramHelper = {
   getBotId,
-  getInlineLink,
-  getLink,
+  makeInlineLink,
+  makeLink,
+  makeRequest,
 };

@@ -20,7 +20,7 @@ yarn add @iamnnort/telegraf-helper
 
 ### messageHelper.makeMessage
 
-Makes well formatted messages with header and body sections.
+Make well formatted messages with header and body sections.
 
 #### Example
 
@@ -59,7 +59,7 @@ Convenient
 
 ### messageHelper.makeEntityMessage
 
-Making well formatted messages for given entity.
+Make well formatted messages for a given entity.
 
 #### Example
 
@@ -109,6 +109,71 @@ All the Best
 | `properties`          | List of configs for the entity properties       |
 | `properties[i].name`  | Name of the property                            |
 | `properties[i].value` | Value of the property                           |
+
+### telegramHelper.getBotId
+
+Retrieve the identifier for a given token.
+
+#### Example
+
+```javascript
+import { telegramHelper } from "@iamnnort/telegraf-helper";
+
+const botId = telegramHelper.getBotId(process.env.BOT_TOKEN);
+
+// 6607146717
+```
+
+### telegramHelper.makeInlineLink
+
+Make the inline link for a given username.
+
+#### Example
+
+```javascript
+import { telegramHelper } from "@iamnnort/telegraf-helper";
+
+const inlineLink = telegramHelper.makeInlineLink("iamnnort");
+
+// @iamnnort
+```
+
+### telegramHelper.makeLink
+
+Make the external link for a given username.
+
+#### Example
+
+```javascript
+import { telegramHelper } from "@iamnnort/telegraf-helper";
+
+const link = telegramHelper.makeLink("iamnnort");
+
+// https://t.me/iamnnort
+```
+
+### telegramHelper.makeRequest
+
+Make the request manager for a given bot. To get more information about the request parameters visit [@iamnnort/request](https://github.com/iamnnort/request) package documentation.
+
+#### Example
+
+```javascript
+const request = telegramHelper.makeRequest(process.env.BOT_TOKEN, {
+  logger: true,
+});
+
+const webhookInfo = await request({
+  url: "/getWebhookInfo",
+});
+```
+
+#### Log
+
+```
+[Request] http://api.telegram.org/bot6607146717:AAHZ*****98k/getWebhookInfo
+[Response] GET http://api.telegram.org/bot6607146717:AAHZ*****98k/getWebhookInfo 200 OK {"ok":true,"result":{"url":"","has_custom_certificate":false,"pending_update_count":0}}
+```
 
 ## License
 
