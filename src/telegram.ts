@@ -28,7 +28,7 @@ function makeLink(username = "", start = "") {
   return `https://t.me/${username}`;
 }
 
-function getRequest(botToken = "", requestConfig: BaseRequestConfig = {}) {
+function makeRequest(botToken = "", requestConfig: BaseRequestConfig = {}) {
   const req = request({
     ...requestConfig,
     method: methods.POST,
@@ -43,5 +43,5 @@ export const telegramHelper = {
   getBotId,
   makeInlineLink,
   makeLink,
-  getRequest,
+  makeRequest,
 };
