@@ -1,3 +1,5 @@
+import 'typegram'
+
 import { BaseRequestConfig, methods, request } from "@iamnnort/request";
 
 function getBotId(botToken = "") {
@@ -29,6 +31,8 @@ function makeLink(username = "", start = "") {
 }
 
 function makeRequest(botToken = "", requestConfig: BaseRequestConfig = {}) {
+  
+
   const req = request({
     ...requestConfig,
     method: methods.POST,
