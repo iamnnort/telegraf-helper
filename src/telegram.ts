@@ -1,5 +1,3 @@
-import "typegram";
-
 import { BaseRequestConfig, methods, request } from "@iamnnort/request";
 import { TelegramApiSuccess } from "./types";
 
