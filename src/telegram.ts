@@ -1,5 +1,6 @@
 import { BaseRequestConfig, methods, request } from "@iamnnort/request";
 import { TelegramApiSuccess } from "./types";
+import { config } from "./config";
 
 function getBotId(botToken = "") {
   if (!botToken) {
@@ -41,6 +42,7 @@ function makeRequest<T>(botToken = "", requestConfig: BaseRequestConfig = {}) {
 }
 
 export const telegramHelper = {
+  ...config.telegram,
   getBotId,
   makeInlineLink,
   makeLink,
