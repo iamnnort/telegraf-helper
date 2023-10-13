@@ -1,6 +1,7 @@
-import 'typegram'
+import "typegram";
 
 import { BaseRequestConfig, methods, request } from "@iamnnort/request";
+import { TelegramApiSuccess } from "./types";
 
 function getBotId(botToken = "") {
   if (!botToken) {
@@ -30,9 +31,7 @@ function makeLink(username = "", start = "") {
   return `https://t.me/${username}`;
 }
 
-function makeRequest(botToken = "", requestConfig: BaseRequestConfig = {}) {
-  
-
+function makeRequest<T>(botToken = "", requestConfig: BaseRequestConfig = {}) {
   const req = request({
     ...requestConfig,
     method: methods.POST,
@@ -40,7 +39,7 @@ function makeRequest(botToken = "", requestConfig: BaseRequestConfig = {}) {
     url: `bot${botToken}`,
   });
 
-  return req;
+  return req<TelegramApiSuccess<T>>;
 }
 
 export const telegramHelper = {
