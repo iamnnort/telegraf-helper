@@ -1,4 +1,4 @@
-import { telegramHelper } from "../src";
+import { TelegramMessageTypes, telegramHelper } from "../src";
 
 import "dotenv/config";
 
@@ -17,7 +17,7 @@ async function run() {
 
   const telegram = telegramHelper.makeTelegram(process.env.BOT_TOKEN);
 
-  await telegram.send(telegramHelper.messageTypes.TEXT, "iamnnort", {
+  await telegram.send(TelegramMessageTypes.TEXT, "iamnnort", {
     text: "Hey, how is it going?",
   });
 }

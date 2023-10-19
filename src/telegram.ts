@@ -1,7 +1,7 @@
-import { Telegram } from "telegraf";
-import { config } from "./config";
+import { Telegram as TelegrafTelegram } from "telegraf";
 import { InputFile } from "telegraf/typings/core/types/typegram";
 import { FmtString } from "telegraf/typings/format";
+import { TelegramMessageTypes } from "./types";
 
 function getBotId(botToken = "") {
   if (!botToken) {
@@ -32,73 +32,69 @@ function makeLink(username = "", start = "") {
 }
 
 function makeTelegram(botToken = "") {
-  const telegram = new Telegram(botToken);
+  class Telegram extends TelegrafTelegram {
+    send(
+      type: string,
+      chatId: number | string,
+      dto: {
+        media?: string | InputFile;
+        text?: string | FmtString;
+      }
+    ) {
+      if (dto.media) {
+        if (type === TelegramMessageTypes.PHOTO) {
+          return this.sendPhoto(chatId, dto.media, {
+            parse_mode: "HTML",
+            caption: dto.text,
+          });
+        }
 
-  function send(
-    type: string,
-    chatId: number | string,
-    dto: {
-      media?: string | InputFile;
-      text?: string | FmtString;
-    }
-  ) {
-    if (dto.media) {
-      if (type === config.telegram.messageTypes.PHOTO) {
-        return telegram.sendPhoto(chatId, dto.media, {
+        if (type === TelegramMessageTypes.VIDEO) {
+          return this.sendVideo(chatId, dto.media, {
+            parse_mode: "HTML",
+            caption: dto.text,
+          });
+        }
+
+        if (type === TelegramMessageTypes.AUDIO) {
+          return this.sendAudio(chatId, dto.media, {
+            parse_mode: "HTML",
+            caption: dto.text,
+          });
+        }
+
+        if (type === TelegramMessageTypes.DOCUMENT) {
+          return this.sendDocument(chatId, dto.media, {
+            parse_mode: "HTML",
+            caption: dto.text,
+          });
+        }
+
+        if (type === TelegramMessageTypes.VOICE) {
+          return this.sendVoice(chatId, dto.media, {
+            parse_mode: "HTML",
+            caption: dto.text,
+          });
+        }
+
+        if (type === TelegramMessageTypes.STICKER) {
+          return this.sendSticker(chatId, dto.media);
+        }
+      }
+
+      if (dto.text) {
+        return this.sendMessage(chatId, dto.text, {
           parse_mode: "HTML",
-          caption: dto.text,
+          disable_web_page_preview: true,
         });
       }
-
-      if (type === config.telegram.messageTypes.VIDEO) {
-        return telegram.sendVideo(chatId, dto.media, {
-          parse_mode: "HTML",
-          caption: dto.text,
-        });
-      }
-
-      if (type === config.telegram.messageTypes.AUDIO) {
-        return telegram.sendAudio(chatId, dto.media, {
-          parse_mode: "HTML",
-          caption: dto.text,
-        });
-      }
-
-      if (type === config.telegram.messageTypes.DOCUMENT) {
-        return telegram.sendDocument(chatId, dto.media, {
-          parse_mode: "HTML",
-          caption: dto.text,
-        });
-      }
-
-      if (type === config.telegram.messageTypes.VOICE) {
-        return telegram.sendVoice(chatId, dto.media, {
-          parse_mode: "HTML",
-          caption: dto.text,
-        });
-      }
-
-      if (type === config.telegram.messageTypes.STICKER) {
-        return telegram.sendSticker(chatId, dto.media);
-      }
-    }
-
-    if (dto.text) {
-      return telegram.sendMessage(chatId, dto.text, {
-        parse_mode: "HTML",
-        disable_web_page_preview: true,
-      });
     }
   }
 
-  return {
-    ...telegram,
-    send,
-  };
+  return new Telegram(botToken);
 }
 
 export const telegramHelper = {
-  ...config.telegram,
   getBotId,
   makeInlineLink,
   makeLink,

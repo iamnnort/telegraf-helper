@@ -163,11 +163,11 @@ import { telegramHelper } from "@iamnnort/telegraf-helper";
 
 const telegram = telegramHelper.makeTelegram(process.env.BOT_TOKEN);
 
-await telegram.send(telegramHelper.messageTypes.TEXT, "iamnnort", {
+await telegram.send(TelegramMessageTypes.TEXT, "iamnnort", {
   text: "<some text here>,
 });
 
-await telegram.send(telegramHelper.messageTypes.PHOTO, "iamnnort", {
+await telegram.send(TelegramMessageTypes.PHOTO, "iamnnort", {
   text: "<some text here>",
   media: "<some photo ID or URL here>",
 });
