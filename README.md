@@ -152,7 +152,7 @@ const link = telegramHelper.makeLink("iamnnort");
 // https://t.me/iamnnort
 ```
 
-### telegramHelper.makeTelegram
+### telegramHelper.Telegram
 
 Make `Telegram` instance from `Telegraf` with additional useful functions like `send`.
 
@@ -161,7 +161,7 @@ Make `Telegram` instance from `Telegraf` with additional useful functions like `
 ```javascript
 import { telegramHelper } from "@iamnnort/telegraf-helper";
 
-const telegram = telegramHelper.makeTelegram("<bot token>");
+const telegram = new telegramHelper.Telegram("<bot token>");
 
 await telegram.send(TelegramMessageTypes.TEXT, "iamnnort", {
   text: "<text>",

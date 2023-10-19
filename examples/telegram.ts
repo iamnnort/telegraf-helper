@@ -18,7 +18,7 @@ async function run() {
   const telegram = new telegramHelper.Telegram("<bot token>");
 
   await telegram.send(TelegramMessageTypes.TEXT, "iamnnort", {
-    text: "Hey, how is it going?",
+    text: "<text>",
   });
 }
 
