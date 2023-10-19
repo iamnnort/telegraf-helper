@@ -25,10 +25,7 @@ function makeMessage(params: {
     }
   });
 
-  const message = [
-    ...[headerMessage.length ? [headerMessage.join("\n\n")] : []],
-    ...[bodyMessage.length ? [bodyMessage.join("\n")] : []],
-  ];
+  const message = [...headerMessage, ...bodyMessage];
 
   return message.join("\n\n");
 }
