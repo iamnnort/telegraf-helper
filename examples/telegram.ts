@@ -3,7 +3,7 @@ import { TelegramMessageTypes, telegramHelper } from "../src";
 import "dotenv/config";
 
 async function run() {
-  const botId = telegramHelper.getBotId(process.env.BOT_TOKEN);
+  const botId = telegramHelper.getBotId("<bot token>");
 
   console.log(botId);
 
@@ -15,7 +15,7 @@ async function run() {
 
   console.log(link);
 
-  const telegram = telegramHelper.makeTelegram(process.env.BOT_TOKEN);
+  const telegram = new telegramHelper.Telegram("<bot token>");
 
   await telegram.send(TelegramMessageTypes.TEXT, "iamnnort", {
     text: "Hey, how is it going?",

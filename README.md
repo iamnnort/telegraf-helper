@@ -119,7 +119,7 @@ Retrieve the identifier for a given token.
 ```javascript
 import { telegramHelper } from "@iamnnort/telegraf-helper";
 
-const botId = telegramHelper.getBotId(process.env.BOT_TOKEN);
+const botId = telegramHelper.getBotId("<bot token>");
 
 // 6607146717
 ```
@@ -161,15 +161,15 @@ Make `Telegram` instance from `Telegraf` with additional useful functions like `
 ```javascript
 import { telegramHelper } from "@iamnnort/telegraf-helper";
 
-const telegram = telegramHelper.makeTelegram(process.env.BOT_TOKEN);
+const telegram = telegramHelper.makeTelegram("<bot token>");
 
 await telegram.send(TelegramMessageTypes.TEXT, "iamnnort", {
-  text: "<some text here>",
+  text: "<text>",
 });
 
 await telegram.send(TelegramMessageTypes.PHOTO, "iamnnort", {
-  text: "<some text here>",
-  media: "<some photo ID or URL here>",
+  text: "<text>",
+  media: "<photo ID or URL>",
 });
 ```
 
