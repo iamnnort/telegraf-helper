@@ -164,7 +164,7 @@ import { telegramHelper } from "@iamnnort/telegraf-helper";
 const telegram = telegramHelper.makeTelegram(process.env.BOT_TOKEN);
 
 await telegram.send(TelegramMessageTypes.TEXT, "iamnnort", {
-  text: "<some text here>,
+  text: "<some text here>",
 });
 
 await telegram.send(TelegramMessageTypes.PHOTO, "iamnnort", {
