@@ -36,6 +36,11 @@ function makeRequest<T>(botToken = "", requestConfig: BaseRequestConfig = {}) {
     method: methods.POST,
     baseUrl: "https://api.telegram.org",
     url: `bot${botToken}`,
+    data: {
+      parse_mode: "HTML",
+      disable_web_page_preview: true,
+      ...(requestConfig.data || {}),
+    },
   });
 
   return req<TelegramApiSuccess<T>>;
