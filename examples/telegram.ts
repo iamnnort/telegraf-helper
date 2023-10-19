@@ -15,15 +15,11 @@ async function run() {
 
   console.log(link);
 
-  const request = telegramHelper.makeRequest(process.env.BOT_TOKEN, {
-    logger: true,
-  });
+  const telegram = telegramHelper.makeTelegram(process.env.BOT_TOKEN);
 
-  const webhookInfo = await request({
-    url: "/getWebhookInfo",
+  await telegram.send(telegramHelper.messageTypes.TEXT, "iamnnort", {
+    text: "Hey, how is it going?",
   });
-
-  console.log(webhookInfo);
 }
 
 run();

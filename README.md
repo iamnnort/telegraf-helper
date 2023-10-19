@@ -152,27 +152,25 @@ const link = telegramHelper.makeLink("iamnnort");
 // https://t.me/iamnnort
 ```
 
-### telegramHelper.makeRequest
+### telegramHelper.makeTelegram
 
-Make the request manager for a given bot. To get more information about the request parameters visit [@iamnnort/request](https://github.com/iamnnort/request) package documentation.
+Make `Telegram` instance from `Telegraf` with additional useful functions like `send`.
 
 #### Example
 
 ```javascript
-const request = telegramHelper.makeRequest(process.env.BOT_TOKEN, {
-  logger: true,
+import { telegramHelper } from "@iamnnort/telegraf-helper";
+
+const telegram = telegramHelper.makeTelegram(process.env.BOT_TOKEN);
+
+await telegram.send(telegramHelper.messageTypes.TEXT, "iamnnort", {
+  text: "<some text here>,
 });
 
-const webhookInfo = await request({
-  url: "/getWebhookInfo",
+await telegram.send(telegramHelper.messageTypes.PHOTO, "iamnnort", {
+  text: "<some text here>",
+  media: "<some photo ID or URL here>",
 });
-```
-
-#### Log
-
-```
-[Request] http://api.telegram.org/bot6607146717:AAHZ*****98k/getWebhookInfo
-[Response] GET http://api.telegram.org/bot6607146717:AAHZ*****98k/getWebhookInfo 200 OK {"ok":true,"result":{"url":"","has_custom_certificate":false,"pending_update_count":0}}
 ```
 
 ## License

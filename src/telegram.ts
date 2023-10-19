@@ -1,6 +1,7 @@
-import { BaseRequestConfig, methods, request } from "@iamnnort/request";
-import { TelegramApiSuccess } from "./types";
+import { Telegram } from "telegraf";
 import { config } from "./config";
+import { InputFile } from "telegraf/typings/core/types/typegram";
+import { FmtString } from "telegraf/typings/format";
 
 function getBotId(botToken = "") {
   if (!botToken) {
@@ -30,20 +31,70 @@ function makeLink(username = "", start = "") {
   return `https://t.me/${username}`;
 }
 
-function makeRequest<T>(botToken = "", requestConfig: BaseRequestConfig = {}) {
-  const req = request({
-    ...requestConfig,
-    method: methods.POST,
-    baseUrl: "https://api.telegram.org",
-    url: `bot${botToken}`,
-    data: {
-      parse_mode: "HTML",
-      disable_web_page_preview: true,
-      ...(requestConfig.data || {}),
-    },
-  });
+function makeTelegram(botToken = "") {
+  const telegram = new Telegram(botToken);
 
-  return req<TelegramApiSuccess<T>>;
+  function send(
+    type: string,
+    chatId: number | string,
+    dto: {
+      media?: string | InputFile;
+      text?: string | FmtString;
+    }
+  ) {
+    if (dto.media) {
+      if (type === config.telegram.messageTypes.PHOTO) {
+        return telegram.sendPhoto(chatId, dto.media, {
+          parse_mode: "HTML",
+          caption: dto.text,
+        });
+      }
+
+      if (type === config.telegram.messageTypes.VIDEO) {
+        return telegram.sendVideo(chatId, dto.media, {
+          parse_mode: "HTML",
+          caption: dto.text,
+        });
+      }
+
+      if (type === config.telegram.messageTypes.AUDIO) {
+        return telegram.sendAudio(chatId, dto.media, {
+          parse_mode: "HTML",
+          caption: dto.text,
+        });
+      }
+
+      if (type === config.telegram.messageTypes.DOCUMENT) {
+        return telegram.sendDocument(chatId, dto.media, {
+          parse_mode: "HTML",
+          caption: dto.text,
+        });
+      }
+
+      if (type === config.telegram.messageTypes.VOICE) {
+        return telegram.sendVoice(chatId, dto.media, {
+          parse_mode: "HTML",
+          caption: dto.text,
+        });
+      }
+
+      if (type === config.telegram.messageTypes.STICKER) {
+        return telegram.sendSticker(chatId, dto.media);
+      }
+    }
+
+    if (dto.text) {
+      return telegram.sendMessage(chatId, dto.text, {
+        parse_mode: "HTML",
+        disable_web_page_preview: true,
+      });
+    }
+  }
+
+  return {
+    ...telegram,
+    send,
+  };
 }
 
 export const telegramHelper = {
@@ -51,5 +102,5 @@ export const telegramHelper = {
   getBotId,
   makeInlineLink,
   makeLink,
-  makeRequest,
+  makeTelegram,
 };

@@ -6,5 +6,14 @@ export const config = {
       BAD_REQUEST_REMOVE_OWNER: "Bad Request: can't remove chat owner",
       BAD_REQUEST_CHAT_NOT_FOUND: "Bad Request: chat not found",
     },
+    messageTypes: {
+      TEXT: "text",
+      PHOTO: "photo",
+      VIDEO: "video",
+      AUDIO: "audio",
+      DOCUMENT: "document",
+      VOICE: "voice",
+      STICKER: "sticker",
+    },
   },
 };
