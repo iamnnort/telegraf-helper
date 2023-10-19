@@ -414,10 +414,10 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.18.20.tgz#786c5f41f043b07afb1af37683d7c33668858f6d"
   integrity sha512-kTdfRcSiDfQca/y9QIkng02avJ+NCaQvrMejlsB3RRv5sE9rRoeBPISaZpKxHELzRxZyLvNts1P27W3wV+8geQ==
 
-"@iamnnort/request@^1.6.2":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@iamnnort/request/-/request-1.6.2.tgz#b12b779c1229fd35a4ba4feed44b507d210bc526"
-  integrity sha512-fpoGva8mYBwakL2XzFpuFt9yL4cj4jAaNP3xamSE8a6RyjZEB/NFkLPt4Pg/qpFMKb8/me7d5rDmYA7WZRzngg==
+"@iamnnort/request@^1.6.6":
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/@iamnnort/request/-/request-1.6.6.tgz#0740630f166ba3e75026f6a2eda89615fcd4d6d1"
+  integrity sha512-Jiob2d81QUyq2XnYzQ1MKSaQY2nUY7FF/DJXXYVx9m8Q9BnYIYFj0Zd5hlYGtWD6hT0UQI3C1WqLo06JdmJ+Gw==
   dependencies:
     axios "^1.5.0"
     debug "^4.3.4"
