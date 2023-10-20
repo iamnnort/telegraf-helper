@@ -1,3 +1,5 @@
+import { FmtString } from "telegraf/typings/format";
+
 function makeMessage(params: {
   header?: {
     title: string;
@@ -89,7 +91,19 @@ function makeEntityMessage(params: {
   return message.join("\n\n");
 }
 
+function formatMessage(message: string = "") {
+  return message
+    .replace(/\[b\]([^\]]*)\[b\]/gi, "<b>$1</b>")
+    .replace(/\[i\]([^\]]*)\[i\]/gi, "<i>$1</i>")
+    .replace(/\[u\]([^\]]*)\[u\]/gi, "<u>$1</u>")
+    .replace(/\[t\]([^\]]*)\[t\]/gi, "<s>$1</s>")
+    .replace(/\[c\]([^\]]*)\[c\]/gi, "<code>$1</code>")
+    .replace(/\[a\]([^\]]*?)=([^\]]*)\[a\]/gi, '<a href="$2">$1</a>')
+    .replace(/\[s\]([^\]]*)\[s\]/gi, "<tg-spoiler>$1</tg-spoiler>");
+}
+
 export const messageHelper = {
   makeMessage,
   makeEntityMessage,
+  formatMessage,
 };

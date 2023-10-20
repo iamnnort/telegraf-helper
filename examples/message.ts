@@ -34,6 +34,10 @@ function run() {
   });
 
   console.log(entityMessage);
+
+  const formattedMessage = messageHelper.formatMessage("[b]Telegraf Helper[b]");
+
+  console.log(formattedMessage);
 }
 
 run();

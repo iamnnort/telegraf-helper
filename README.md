@@ -110,6 +110,32 @@ All the Best
 | `properties[i].name`  | Name of the property                            |
 | `properties[i].value` | Value of the property                           |
 
+### messageHelper.formatMessage
+
+Format message by transforming custom tags to HTML analogs.
+
+#### Example
+
+```javascript
+import { messageHelper } from "@iamnnort/telegraf-helper";
+
+const formattedMessage = messageHelper.formatMessage("[b]Telegraf Helper[b]");
+
+// <b>Telegraf Helper</b>
+```
+
+#### Transform map
+
+| Parameter                           | Description                                 |
+| ----------------------------------- | ------------------------------------------- |
+| `[b]Example[b]`                     | `<b>Example</b>`                            |
+| `[i]Example[i]`                     | `<i>Example</i>`                            |
+| `[u]Example[u]`                     | `<u>Example</u>`                            |
+| `[t]Example[t]`                     | `<s>Example</b>`                            |
+| `[s]Example[s]`                     | `<tg-spoiler>Example</tg-spoiler>`          |
+| `[c]Example[c]`                     | `<code>Example</code>`                      |
+| `[a]Example=https://example.com[a]` | `<a href="https://example.com">Example</a>` |
+
 ### telegramHelper.getBotId
 
 Retrieve the identifier for a given token.
@@ -152,16 +178,16 @@ const link = telegramHelper.makeLink("iamnnort");
 // https://t.me/iamnnort
 ```
 
-### telegramHelper.Telegram
+### Telegram
 
 Make `Telegram` instance from `Telegraf` with additional useful functions like `send`.
 
 #### Example
 
 ```javascript
-import { telegramHelper } from "@iamnnort/telegraf-helper";
+import { Telegram } from "@iamnnort/telegraf-helper";
 
-const telegram = new telegramHelper.Telegram("<bot token>");
+const telegram = new Telegram("<bot token>");
 
 await telegram.send(TelegramMessageTypes.TEXT, "iamnnort", {
   text: "<text>",

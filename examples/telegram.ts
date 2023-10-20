@@ -1,4 +1,4 @@
-import { TelegramMessageTypes, telegramHelper } from "../src";
+import { Telegram, TelegramMessageTypes, telegramHelper } from "../src";
 
 import "dotenv/config";
 
@@ -15,10 +15,11 @@ async function run() {
 
   console.log(link);
 
-  const telegram = new telegramHelper.Telegram("<bot token>");
+  const telegram = new Telegram("<bot token>");
 
-  await telegram.send(TelegramMessageTypes.TEXT, "iamnnort", {
+  await telegram.send(TelegramMessageTypes.PHOTO, "iamnnort", {
     text: "<text>",
+    media: "<photo ID or URL>",
   });
 }
 
