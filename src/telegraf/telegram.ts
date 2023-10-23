@@ -114,7 +114,20 @@ export class Telegram extends TelegrafTelegram {
       buttons?: TelegramButton[][];
     }
   ) {
-    if (dto.media) {
+    if (
+      [
+        TelegramMessageTypes.PHOTO,
+        TelegramMessageTypes.VIDEO,
+        TelegramMessageTypes.AUDIO,
+        TelegramMessageTypes.DOCUMENT,
+        TelegramMessageTypes.VOICE,
+        TelegramMessageTypes.STICKER,
+      ].includes(type)
+    ) {
+      if (!dto.media) {
+        throw new Error("Media is not provided.");
+      }
+
       if (type === TelegramMessageTypes.PHOTO) {
         return this.sendPhotoSmart(chatId, {
           text: dto.text,
@@ -163,15 +176,13 @@ export class Telegram extends TelegrafTelegram {
       }
     }
 
-    if (dto.text) {
-      if (type === TelegramMessageTypes.TEXT) {
-        return this.sendMessageSmart(chatId, {
-          text: dto.text,
-          buttons: dto.buttons,
-        });
-      }
+    if (!dto.text) {
+      throw new Error("Text is not provided.");
     }
 
-    throw new Error("Types is not supported");
+    return this.sendMessageSmart(chatId, {
+      text: dto.text,
+      buttons: dto.buttons,
+    });
   }
 }

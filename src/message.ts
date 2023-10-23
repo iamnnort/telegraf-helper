@@ -99,7 +99,7 @@ function makeMessageButton(buttonGroups: TelegramButton[][] = []) {
       return buttonGroup.map((button) => {
         if (button.type === TelegramButtonTypes.LINK) {
           if (!button.link) {
-            throw new Error("Link is required.");
+            throw new Error("Link is not provided.");
           }
 
           return Markup.button.url(button.label, button.link, button.hide);
@@ -107,7 +107,7 @@ function makeMessageButton(buttonGroups: TelegramButton[][] = []) {
 
         if (button.type === TelegramButtonTypes.CALLBACK) {
           if (!button.payload) {
-            throw new Error("Payload is required.");
+            throw new Error("Payload is not provided.");
           }
 
           return Markup.button.callback(
