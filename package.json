@@ -1,6 +1,6 @@
 {
   "name": "@iamnnort/telegraf-helper",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "Helpers for Telegraf.js framework - Simple - Customizable - Convenient",
   "keywords": [
     "telegraf",
