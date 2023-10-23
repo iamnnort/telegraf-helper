@@ -1,4 +1,6 @@
 import { FmtString } from "telegraf/typings/format";
+import { TelegramButton, TelegramButtonTypes } from "./telegraf";
+import { Markup } from "telegraf";
 
 function makeMessage(params: {
   header?: {
@@ -91,6 +93,36 @@ function makeEntityMessage(params: {
   return message.join("\n\n");
 }
 
+function makeMessageButton(buttonGroups: TelegramButton[][] = []) {
+  return Markup.inlineKeyboard(
+    buttonGroups.map((buttonGroup) => {
+      return buttonGroup.map((button) => {
+        if (button.type === TelegramButtonTypes.LINK) {
+          if (!button.link) {
+            throw new Error("Link is required.");
+          }
+
+          return Markup.button.url(button.label, button.link, button.hide);
+        }
+
+        if (button.type === TelegramButtonTypes.CALLBACK) {
+          if (!button.payload) {
+            throw new Error("Payload is required.");
+          }
+
+          return Markup.button.callback(
+            button.label,
+            button.payload,
+            button.hide
+          );
+        }
+
+        throw new Error("Type is not supported.");
+      });
+    })
+  );
+}
+
 function formatMessage(message: string = "") {
   return message
     .replace(/\[b\]([^\]]*)\[b\]/gi, "<b>$1</b>")
@@ -105,5 +137,6 @@ function formatMessage(message: string = "") {
 export const messageHelper = {
   makeMessage,
   makeEntityMessage,
+  makeMessageButton,
   formatMessage,
 };
