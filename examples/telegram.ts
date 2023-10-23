@@ -17,7 +17,7 @@ async function run() {
 
   const telegram = new Telegram("<bot token>");
 
-  await telegram.send(TelegramMessageTypes.PHOTO, "iamnnort", {
+  await telegram.sendSmart(TelegramMessageTypes.PHOTO, "iamnnort", {
     text: "<text>",
     media: "<photo ID or URL>",
   });

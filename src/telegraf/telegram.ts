@@ -1,4 +1,4 @@
-import { Markup, Telegram as TelegrafTelegram } from "telegraf";
+import { Telegram as TelegrafTelegram } from "telegraf";
 import { InputFile } from "telegraf/typings/core/types/typegram";
 import { messageHelper } from "../message";
 import { TelegramButton, TelegramMessageTypes } from "./types";
@@ -105,7 +105,7 @@ export class Telegram extends TelegrafTelegram {
     });
   }
 
-  send(
+  sendSmart(
     type: TelegramMessageTypes,
     chatId: number | string,
     dto: {

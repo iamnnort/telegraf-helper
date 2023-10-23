@@ -189,11 +189,11 @@ import { Telegram } from "@iamnnort/telegraf-helper";
 
 const telegram = new Telegram("<bot token>");
 
-await telegram.send(TelegramMessageTypes.TEXT, "iamnnort", {
+await telegram.sendSmart(TelegramMessageTypes.TEXT, "iamnnort", {
   text: "<text>",
 });
 
-await telegram.send(TelegramMessageTypes.PHOTO, "iamnnort", {
+await telegram.sendSmart(TelegramMessageTypes.PHOTO, "iamnnort", {
   text: "<text>",
   media: "<photo ID or URL>",
 });
