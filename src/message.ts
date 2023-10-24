@@ -96,29 +96,33 @@ function makeEntityMessage(params: {
 function makeMessageButton(buttonGroups: TelegramButton[][] = []) {
   return Markup.inlineKeyboard(
     buttonGroups.map((buttonGroup) => {
-      return buttonGroup.map((button) => {
-        if (button.type === TelegramButtonTypes.LINK) {
-          if (!button.link) {
-            throw new Error("Link is not provided.");
+      return buttonGroup
+        .filter((button) => {
+          return !button.hide;
+        })
+        .map((button) => {
+          if (button.type === TelegramButtonTypes.LINK) {
+            if (!button.link) {
+              throw new Error("Link is not provided.");
+            }
+
+            return Markup.button.url(button.label, button.link, button.hide);
           }
 
-          return Markup.button.url(button.label, button.link, button.hide);
-        }
+          if (button.type === TelegramButtonTypes.CALLBACK) {
+            if (!button.payload) {
+              throw new Error("Payload is not provided.");
+            }
 
-        if (button.type === TelegramButtonTypes.CALLBACK) {
-          if (!button.payload) {
-            throw new Error("Payload is not provided.");
+            return Markup.button.callback(
+              button.label,
+              button.payload,
+              button.hide
+            );
           }
 
-          return Markup.button.callback(
-            button.label,
-            button.payload,
-            button.hide
-          );
-        }
-
-        throw new Error("Type is not supported.");
-      });
+          throw new Error("Type is not supported.");
+        });
     })
   );
 }
