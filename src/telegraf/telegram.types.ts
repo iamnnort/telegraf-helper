@@ -4,6 +4,10 @@ import { TelegramButtonTypes } from './types';
 export type PickSmart<T, RK extends keyof T, OK extends keyof T> = Pick<T, RK> &
   Pick<Partial<T>, OK>;
 
+export type TelegramConfig = {
+  protectContent?: boolean;
+};
+
 export type TelegramButton = {
   type: TelegramButtonTypes;
   label: string;
@@ -15,6 +19,6 @@ export type TelegramButton = {
 export type TelegramMessageDto = {
   text: string;
   media: string | InputFile;
-  protect: boolean;
+  protectContent: boolean;
   buttons: TelegramButton[][];
 };
