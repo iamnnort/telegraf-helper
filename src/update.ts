@@ -1,4 +1,4 @@
-import { User, Chat } from "typegram";
+import { User, Chat } from 'typegram';
 
 function getSender(ctx: any): User {
   return (
@@ -34,7 +34,7 @@ function getInviteLinkOwner(ctx: any): User {
 }
 
 function getInlineQuery(ctx: any): string {
-  return ctx.update.inline_query?.query || "";
+  return ctx.update.inline_query?.query || '';
 }
 
 function getMessageText(ctx: any): string {

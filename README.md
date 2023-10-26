@@ -180,7 +180,7 @@ const link = telegramHelper.makeLink("iamnnort");
 
 ### Telegram
 
-Make `Telegram` instance from `Telegraf` with additional useful functions like `send`.
+Make `Telegram` instance from `Telegraf` with additional useful functions like `sendSmart`.
 
 #### Example
 

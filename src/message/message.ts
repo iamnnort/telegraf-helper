@@ -1,14 +1,15 @@
-import { FmtString } from "telegraf/typings/format";
-import { TelegramButton, TelegramButtonTypes } from "./telegraf";
-import { Markup } from "telegraf";
+import { TelegramButton, TelegramButtonTypes } from '../telegraf';
+import { Markup } from 'telegraf';
 
-function makeMessage(params: {
-  header?: {
-    title: string;
-    subtitle?: string;
-  }[];
-  body?: string[];
-}) {
+function makeMessage(
+  params: {
+    header?: {
+      title: string;
+      subtitle?: string;
+    }[];
+    body?: string[];
+  } = {},
+) {
   const headerMessage: string[] = [];
 
   params.header?.forEach((headerRow) => {
@@ -31,7 +32,7 @@ function makeMessage(params: {
 
   const message = [...headerMessage, ...bodyMessage];
 
-  return message.join("\n\n");
+  return message.join('\n\n');
 }
 
 function makeEntityMessage(params: {
@@ -53,7 +54,7 @@ function makeEntityMessage(params: {
   const propertiesMessage: string[] = [];
 
   params.properties?.forEach((propertyRow) => {
-    const propertyRowMessage: string[] = ["— "];
+    const propertyRowMessage: string[] = ['— '];
 
     if (propertyRow.name) {
       propertyRowMessage.push(`<i>${propertyRow.name}:</i> `);
@@ -71,15 +72,15 @@ function makeEntityMessage(params: {
       }
     });
 
-    propertiesMessage.push(propertyRowMessage.join(""));
+    propertiesMessage.push(propertyRowMessage.join(''));
 
     if (propertyRow.children?.length) {
-      propertiesMessage.push(propertyRowChildrenMessage.join("\n"));
+      propertiesMessage.push(propertyRowChildrenMessage.join('\n'));
     }
   });
 
   if (params.properties?.length) {
-    message.push(propertiesMessage.join("\n"));
+    message.push(propertiesMessage.join('\n'));
   } else {
     if (params.fallback) {
       message.push(params.fallback);
@@ -90,7 +91,7 @@ function makeEntityMessage(params: {
     message.push(params.comment);
   }
 
-  return message.join("\n\n");
+  return message.join('\n\n');
 }
 
 function makeMessageButton(buttonGroups: TelegramButton[][] = []) {
@@ -103,7 +104,7 @@ function makeMessageButton(buttonGroups: TelegramButton[][] = []) {
         .map((button) => {
           if (button.type === TelegramButtonTypes.LINK) {
             if (!button.link) {
-              throw new Error("Link is not provided.");
+              throw new Error('Link is not provided.');
             }
 
             return Markup.button.url(button.label, button.link, button.hide);
@@ -111,31 +112,31 @@ function makeMessageButton(buttonGroups: TelegramButton[][] = []) {
 
           if (button.type === TelegramButtonTypes.CALLBACK) {
             if (!button.payload) {
-              throw new Error("Payload is not provided.");
+              throw new Error('Payload is not provided.');
             }
 
             return Markup.button.callback(
               button.label,
               button.payload,
-              button.hide
+              button.hide,
             );
           }
 
-          throw new Error("Type is not supported.");
+          throw new Error('Type is not supported.');
         });
-    })
+    }),
   );
 }
 
-function formatMessage(message: string = "") {
+function formatMessage(message: string = '') {
   return message
-    .replace(/\[b\]([^\]]*)\[b\]/gi, "<b>$1</b>")
-    .replace(/\[i\]([^\]]*)\[i\]/gi, "<i>$1</i>")
-    .replace(/\[u\]([^\]]*)\[u\]/gi, "<u>$1</u>")
-    .replace(/\[t\]([^\]]*)\[t\]/gi, "<s>$1</s>")
-    .replace(/\[c\]([^\]]*)\[c\]/gi, "<code>$1</code>")
+    .replace(/\[b\]([^\]]*)\[b\]/gi, '<b>$1</b>')
+    .replace(/\[i\]([^\]]*)\[i\]/gi, '<i>$1</i>')
+    .replace(/\[u\]([^\]]*)\[u\]/gi, '<u>$1</u>')
+    .replace(/\[t\]([^\]]*)\[t\]/gi, '<s>$1</s>')
+    .replace(/\[c\]([^\]]*)\[c\]/gi, '<code>$1</code>')
     .replace(/\[a\]([^\]]*?)=([^\]]*)\[a\]/gi, '<a href="$2">$1</a>')
-    .replace(/\[s\]([^\]]*)\[s\]/gi, "<tg-spoiler>$1</tg-spoiler>");
+    .replace(/\[s\]([^\]]*)\[s\]/gi, '<tg-spoiler>$1</tg-spoiler>');
 }
 
 export const messageHelper = {

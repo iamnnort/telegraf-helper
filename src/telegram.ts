@@ -1,22 +1,22 @@
-function getBotId(botToken = "") {
+function getBotId(botToken = '') {
   if (!botToken) {
     return NaN;
   }
 
-  return parseInt(botToken.split(":")[0]);
+  return parseInt(botToken.split(':')[0]);
 }
 
-function makeInlineLink(username = "") {
+function makeInlineLink(username = '') {
   if (!username) {
-    return "";
+    return '';
   }
 
   return `@${username}`;
 }
 
-function makeLink(username = "", start = "") {
+function makeLink(username = '', start = '') {
   if (!username) {
-    return "";
+    return '';
   }
 
   if (start) {

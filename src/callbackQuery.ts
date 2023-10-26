@@ -3,7 +3,7 @@ function makePayload(payload: {
   data?: number | string | object;
 }) {
   if (!payload.action) {
-    return "";
+    return '';
   }
 
   if (!payload.data) {
@@ -11,13 +11,13 @@ function makePayload(payload: {
   }
 
   const isDataObject =
-    typeof payload.data === "object" && payload.data !== null;
+    typeof payload.data === 'object' && payload.data !== null;
 
   const preparedData = isDataObject
-    ? Object.values(payload.data).join(":")
+    ? Object.values(payload.data).join(':')
     : payload.data;
 
-  return [payload.action, preparedData].join(":");
+  return [payload.action, preparedData].join(':');
 }
 
 function getPayload(ctx: any, dataKeys: string[] = []) {
@@ -25,12 +25,12 @@ function getPayload(ctx: any, dataKeys: string[] = []) {
 
   if (!payloadHash) {
     return {
-      action: "",
+      action: '',
       data: null,
     };
   }
 
-  const [action, ...dataValues] = payloadHash.split(":");
+  const [action, ...dataValues] = payloadHash.split(':');
 
   const data = dataKeys.reduce<{ [key: string]: any }>(
     (accData, dataKey, dataKeyIndex) => {
@@ -39,7 +39,7 @@ function getPayload(ctx: any, dataKeys: string[] = []) {
         [dataKey]: dataValues[dataKeyIndex],
       };
     },
-    {}
+    {},
   );
 
   return {

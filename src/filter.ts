@@ -1,8 +1,8 @@
-import { Update } from "typegram";
+import { Update } from 'typegram';
 
 function inlineQuery() {
   return (update: Update): update is Update.InlineQueryUpdate => {
-    return "inline_query" in update;
+    return 'inline_query' in update;
   };
 }
 
