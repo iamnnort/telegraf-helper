@@ -1,5 +1,6 @@
-import { TelegramButton, TelegramButtonTypes } from '../telegraf';
+import { TelegramButtonTypes } from '../telegraf';
 import { Markup } from 'telegraf';
+import { TelegramButton } from '../telegraf/telegram.types';
 
 function makeMessage(
   params: {
